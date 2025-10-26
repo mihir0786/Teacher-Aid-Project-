@@ -246,30 +246,28 @@ Frontend: `http://localhost:3000`
 ## 📖 How to Use
 
 ### Step 1: Create a Course
-1. Click "New Course" in the sidebar
-2. Enter course name and description
-3. Upload your syllabus (PDF, DOCX)
-4. AI generates a complete topic roadmap
+1. Click on add Sylubass 
+2. Upload your syllabus (PDF, DOCX)
+3. AI generates a complete topic roadmap
 
 ### Step 2: Upload Lecture Audio
-1. Select your course from the sidebar
+1. Click on right end coner and select lecture 
 2. Click "Upload Lecture"
 3. Choose audio file from your recording
-4. Add lecture date and optional notes
-5. System processes audio and generates transcript
+4. System processes audio and generates transcript
 
 ### Step 3: Review Lecture Summary
-1. View auto-generated summary
-2. Check topics covered that day
+1. Go to Report 
+2. Check Summary of that class also topics covered that day
 3. Review key concepts highlighted
 4. See student questions tracked
 
 ### Step 4: Monitor Progress
-1. Open "Analytics Dashboard"
+1. Open "Class Analytics Dashboard"
 2. View syllabus progress percentage
 3. Check engagement metrics
-4. Identify topics needing more attention
-5. Review examples-per-topic statistics
+4. See student questions tracked
+5. Identify topics wise questions asked by student 
 
 ### Step 5: Plan Next Lecture
 1. See which topics were missed
@@ -281,34 +279,6 @@ Frontend: `http://localhost:3000`
 
 ## 📊 Project Structure
 
-```
-backend/
-  ├── main.py              # FastAPI app
-  ├── database.py          # Database setup
-  ├── models.py            # Course, Lecture, Transcript schemas
-  ├── routes/
-  │   ├── courses.py       # Course CRUD + syllabus upload
-  │   ├── lectures.py      # Audio upload → transcription pipeline
-  │   ├── analytics.py     # Dashboard metrics and insights
-  │   └── export.py        # PDF/CSV export
-  └── services/
-      ├── transcription.py # Whisper/AssemblyAI integration
-      ├── gemini_client.py # AI analysis and summarization
-      ├── nlp_processor.py # Question detection, example counting
-      └── topic_matcher.py # Semantic topic extraction
-
-frontend/
-  ├── app/                 # Next.js pages
-  │   ├── courses/         # Course list and details
-  │   ├── lectures/        # Lecture viewer
-  │   └── analytics/       # Dashboard
-  ├── components/          # React components
-  │   ├── syllabus-upload.tsx
-  │   ├── lecture-summary.tsx
-  │   ├── analytics-charts.tsx
-  │   └── progress-tracker.tsx
-  └── lib/api.ts           # API client
-```
 
 ---
 
