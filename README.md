@@ -357,16 +357,26 @@ frontend/
 - [ ] AI-powered teaching recommendations
 
 ---
+## 👥 Team Contributors
 
+| **Name** | **Role / Responsibilities** |
+| -------- | --------------------------- |
+| Mihir Bagadia | Project Manager, Gen AI Developer, Prompt Engineer |
+| Sibi Seenivasan | Backend Developer, Database Manager, Frontend-Backend Integrator |
+| Amilcar Suarez | Frontend Developer, Dashboard Designer, Frontend-Backend Integrator |
+
+> **Note:** This project was a collaborative effort combining AI development, backend engineering, frontend development, and data visualization to create a comprehensive teaching aid for educators.
 
 
 ---
 
-## 📧 Support
+## 📧 Contact
 
-For questions or issues, please:
-- Open an issue on GitHub
-- Contact: [your-email@example.com]
+| **Name**   | **Email**                     | **LinkedIn**                                          |
+|------------|-------------------------------|------------------------------------------------------|
+| Mihir      | mihirvbagadia@gmail.com       | [LinkedIn](https://www.linkedin.com/in/mihir-bagadia) |
+| Sibi       | sibiseenivasan@gmail.com      | [LinkedIn](https://www.linkedin.com/in/sibi-seenivasan/) |
+| Amilcar    | AmilcarSuarez3rd@gmail.com    | [LinkedIn](https://www.linkedin.com/in/amilcar-suarez-33914b390/) |
 
 ---
 
