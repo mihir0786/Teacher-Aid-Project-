@@ -386,6 +386,7 @@ README.md                # Project documentation
 | Mihir Bagadia | Project Manager, Gen AI Developer, Prompt Engineer |
 | Sibi Seenivasan | Backend Developer, Database Manager, Frontend-Backend Integrator |
 | Amilcar Suarez | Frontend Developer, Dashboard Designer, Frontend-Backend Integrator |
+|Heril Jain | - |
 
 > **Note:** This project was a collaborative effort combining AI development, backend engineering, frontend development, and data visualization to create a comprehensive teaching aid for educators.
 
