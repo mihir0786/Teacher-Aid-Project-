@@ -21,7 +21,7 @@ Teaching Aid helps educators analyze their teaching habits, track student engage
 **What This Tool Does:**
 
 1. **Syllabus Roadmap Generation**
-   - Upload course syllabus (PDF/text format)
+   - Upload course syllabus (PDF/Word format)
    - AI generates complete course topic roadmap
    - Visual timeline of topics to be covered
    - Automatic topic hierarchy and dependencies
@@ -34,9 +34,9 @@ Teaching Aid helps educators analyze their teaching habits, track student engage
    - Identification of key points and concepts
 
 3. **Student Engagement Tracking**
-   - Tracks number of questions asked during lecture
+   - Tracks number of questions asked during lecture (using Transcript)
    - Identifies which topics generated most questions
-   - Provides engagement metrics per lecture
+   - Provides engagement metrics per lecture 
    - Historical engagement trends across sessions
 
 4. **Teaching Progress Monitoring**
@@ -49,7 +49,9 @@ Teaching Aid helps educators analyze their teaching habits, track student engage
    - Aggregated statistics across all lectures
    - Student participation trends
    - Topic coverage completion percentage
-   - Teaching style metrics (examples/hour, questions/hour)
+   - Teaching style metrics (examples used vs doubts asked  , Off topic trend)
+   - Practice question generation 
+
 
 **What This Tool Does NOT Do:**
 - ❌ Grade assignments or exams
@@ -71,7 +73,7 @@ Teaching Aid helps educators analyze their teaching habits, track student engage
 flowchart TD
     Start([Teacher Starts]) --> Choice{What to Upload?}
 
-    Choice -->|Syllabus| A[Upload Syllabus PDF/DOCX/TXT]
+    Choice -->|Syllabus| A[Upload Syllabus PDF/DOCX]
     A --> B[AI Extracts Topics]
     B --> C[Generate Course Roadmap]
     C --> D[(Store Topics with Metadata)]
@@ -108,54 +110,75 @@ flowchart TD
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
-- Next.js 14 + React 19 + TypeScript
-- Tailwind CSS + shadcn/ui components
-- Recharts for analytics visualization
-- Lucide Icons
+Analyzing the provided backend and frontend files, here is the comprehensive tech stack used for the **Professor Lecture Analytics** application.
 
-**Backend:**
-- FastAPI + SQLModel (SQLite/PostgreSQL)
-- **OpenAI Whisper** / **AssemblyAI** — Audio transcription
-- **Google Gemini AI** (`gemini-2.0-flash`) — Syllabus analysis, lecture summarization, topic extraction
-- **sentence-transformers** — Semantic topic matching (all-MiniLM-L6-v2)
 
-**AI Pipeline:**
-- Audio-to-text conversion
-- NLP-based question detection
-- Semantic topic extraction
-- Example counting with pattern recognition
-- Automated summary generation
+### 💻 Frontend
+
+The frontend uses **Vite** with **React 19** and supporting libraries for routing and data visualization.
+
+- **Core Framework / Compiler:** Vite  
+- **Library:** React 19 (`19.2.0`)  
+- **Data Visualization:** Chart.js (`^4.5.1`) via **react-chartjs-2** (`^5.3.0`)  
+- **Routing:** react-router-dom (`^7.9.4`) for client-side navigation  
+- **Tooling / Linting:** ESLint 9 with plugins for React Hooks and React Refresh  
+
+
+### ⚙️ Backend
+
+The backend is a Python API using modern tools for web development, database management, and AI processing.
+
+- **Web Framework:** FastAPI (used in `main.py` for routing and dependency injection)  
+- **Database / ORM:** SQLAlchemy (using `Session` and `text` for database interaction; SQLite as per `database.py`)  
+- **LLM Integration:** OpenAI Python Client  
+- **File Parsing:** PyPDF2 (for `.pdf`) and python-docx (for `.docx`)  
+- **Topic Modeling:** Gensim and NLTK (specifically for LDA and stop word processing)  
+- **Environment Management:** python-dotenv  
+
+
+### 🧠 AI Pipeline & Models
+
+The application utilizes a multi-step AI pipeline combining proprietary LLMs and open-source NLP techniques.
+
+- **Audio Transcription:** OpenAI Whisper (`model="whisper-large-v3"`)  
+- **Syllabus Parsing:** LLaMA 3.1 70B Instruct (`llama-3.1-70b-instruct`)  
+- **Lecture Analysis & Notes:** LLaMA 3.3 70B Instruct (`llama-3.3-70b-instruct`)  
+- **Unsupervised Topic Extraction:** Latent Dirichlet Allocation (LDA) via Gensim  
+
+**Core AI Tasks:**
+
+1. Audio-to-text conversion  
+2. Structured content extraction (topics, questions, examples, key points)  
+3. Syllabus comparison and coverage calculation (semantic topic matching is implied; currently, simple string comparison is implemented)  
+4. Pedagogical note generation  
 
 ---
 
 ## 📋 Features Breakdown
 
 ### 1. Syllabus Roadmap
-- **Input:** Course syllabus (PDF/DOCX/TXT)
+- **Input:** Course syllabus (PDF/DOCX)
 - **Output:**
   - Complete topic hierarchy
   - Estimated timeline per topic
-  - Topic dependencies and prerequisites
   - Visual roadmap with milestones
 
 ### 2. Lecture Transcription & Summary
-- **Input:** Audio recording (MP3/WAV/M4A)
+- **Input:** Audio recording (MP3)
 - **Output:**
   - Full text transcript
-  - Lecture summary (200-300 words)
+  - Lecture summary 
   - Topics covered that day
   - Key concepts emphasized
-  - Timestamp markers for important sections
+  - Question asked in lecture
+  - Exampoles used by Instructure
 
 ### 3. Student Engagement Metrics
 - **Tracked Metrics:**
   - Total questions asked
   - Questions per topic
   - Average questions per lecture
-  - Engagement score (0-100)
-  - Most engaging topics
-
+  
 ### 4. Teaching Tracker
 - **Tracked Metrics:**
   - Number of examples used
@@ -164,15 +187,18 @@ flowchart TD
   - Topics partially covered
   - Topics not yet addressed
   - Progress % against syllabus
+  - Off Topic trend 
 
 ---
 
-## 🚀 Installation
+## 🧩 Installation
 
-### Prerequisites
-- Node.js 18+
-- Python 3.10+
-- API keys: [Google Gemini](https://makersuite.google.com/app/apikey) and [OpenAI](https://platform.openai.com/) or [AssemblyAI](https://www.assemblyai.com/)
+### 🧰 Prerequisites
+
+- **Node.js:** 18+  
+- **Python:** 3.10+  
+- **API Keys Required:**  
+  - OpenAI (for Whisper and LLaMA 3.3 70B Instruct)  
 
 ### Backend Setup
 
@@ -191,18 +217,14 @@ pip install -r requirements.txt
 Create `backend/.env`:
 ```env
 # Enter your API keys
-GEMINI_API_KEY=your_gemini_api_key
-OPENAI_API_KEY=your_openai_api_key
-# OR
-ASSEMBLYAI_API_KEY=your_assemblyai_api_key
 
-# Database (optional - defaults to SQLite)
-DATABASE_URL=sqlite:///./teaching_aid.db
+OPENAI_API_KEY=your_openai_api_key
+
 ```
 
 Run backend:
 ```bash
-uvicorn main:app --reload --port 8000
+uvicorn main:app --reload 
 ```
 
 Backend: `http://localhost:8000` | API docs: `http://localhost:8000/docs`
@@ -226,7 +248,7 @@ Frontend: `http://localhost:3000`
 ### Step 1: Create a Course
 1. Click "New Course" in the sidebar
 2. Enter course name and description
-3. Upload your syllabus (PDF, DOCX, or TXT)
+3. Upload your syllabus (PDF, DOCX)
 4. AI generates a complete topic roadmap
 
 ### Step 2: Upload Lecture Audio
@@ -303,9 +325,10 @@ frontend/
 - Identify which topics generate most questions
 - Monitor teaching patterns and adjust approach
 - Evidence-based planning for future lectures
+- Know the times when teachers goes off topic 
 
 **For Accountability:**
-- Document all topics covered with timestamps
+- Document all topics covered 
 - Track completion percentage of syllabus
 - Export reports for academic review
 - Maintain historical record of teaching activities
@@ -335,15 +358,7 @@ frontend/
 
 ---
 
-## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
-
-## 📄 License
-
-MIT License
 
 ---
 
