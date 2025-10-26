@@ -274,11 +274,63 @@ Frontend: `http://localhost:3000`
 2. Review student question patterns
 3. Adjust teaching approach based on insights
 4. Prepare examples for upcoming topics
-
+   
 ---
-
 ## 📊 Project Structure
 
+```
+backend/
+  ├── analytics.py         # Analytics and metrics computation
+  ├── database.py          # SQLite database setup
+  ├── main.py              # FastAPI app entry point
+  ├── models.py            # SQLModel schemas (Course, Lecture, etc.)
+  ├── processing.py        # Audio transcription and text processing
+  ├── requirements.txt     # Python dependencies
+  ├── schemas.py           # Pydantic request/response schemas
+  └── syllabus_tracker.py  # Syllabus parsing and topic extraction
+
+frontend/
+  ├── public/
+  │   └── vite.svg         # Vite logo
+  ├── src/
+  │   ├── assets/          # Static assets (images, icons)
+  │   │   ├── red-bar-graph.png
+  │   │   ├── students-icon.svg
+  │   │   └── tiny-bar-chart3.png
+  │   ├── components/      # React components
+  │   │   ├── report/      # Report-related components
+  │   │   │   ├── ClassesPanel.jsx
+  │   │   │   ├── QuizPanel.jsx
+  │   │   │   ├── SummaryPanel.jsx
+  │   │   │   └── TeacherNotesPanel.jsx
+  │   │   ├── Roadmap/     # Roadmap/Syllabus components
+  │   │   │   ├── LectureSection.css
+  │   │   │   ├── LectureSection.jsx
+  │   │   │   ├── Roadmap.css
+  │   │   │   ├── Roadmap.jsx
+  │   │   │   ├── TopicItem.css
+  │   │   │   └── TopicItem.jsx
+  │   │   ├── ClassSummary.jsx
+  │   │   ├── QuestionsPanel.css
+  │   │   ├── QuestionsPanel.jsx
+  │   │   ├── TeacherProfile.css
+  │   │   ├── TeacherProfile.jsx
+  │   │   ├── TopicsPanel.css
+  │   │   └── TopicsPanel.jsx
+  │   ├── pages/           # Page components
+  │   ├── App.css          # Global styles
+  │   ├── App.jsx          # Root component
+  │   ├── index.css        # Base CSS
+  │   └── main.jsx         # React entry point
+  ├── index.html           # HTML template
+  ├── package.json         # Node dependencies
+  ├── package-lock.json    # Dependency lock file
+  └── vite.config.js       # Vite configuration
+
+.gitignore               # Git ignore rules
+eslint.config.js         # ESLint configuration
+README.md                # Project documentation
+```
 
 ---
 
