@@ -383,7 +383,7 @@ README.md                # Project documentation
 
 | **Name** | **Role / Responsibilities** |
 | -------- | --------------------------- |
-| Mihir Bagadia | Project Manager, Gen AI Developer, Prompt Engineer |
+| Mihir Bagadia | Project Manager, API integration, Prompt Engineer |
 | Sibi Seenivasan | Backend Developer, Database Manager, Frontend-Backend Integrator |
 | Amilcar Suarez | Frontend Developer, Dashboard Designer, Frontend-Backend Integrator |
 |Heril Jain | - |
